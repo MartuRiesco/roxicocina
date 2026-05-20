@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Roxi Cocina | Comida casera</title>
+
+  <meta
+    name="description"
+    content="Roxi Cocina: comida casera, platos frescos y hechos con amor todos los días. Consultá el menú del día y hacé tu pedido por WhatsApp."
+  />
+
+  <!-- Open Graph básico para redes sociales -->
+  <meta property="og:title" content="Roxi Cocina | Comida casera" />
+  <meta
+    property="og:description"
+    content="Platos caseros, simples y hechos con amor todos los días."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/F7EEDC/3A2416?text=Roxi+Cocina" />
+  <meta property="og:url" content="https://tuusuario.github.io/roxi-cocina/" />
+
+  <!-- Favicon placeholder -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23F7EEDC'/%3E%3Ctext x='50' y='58' font-size='42' text-anchor='middle' fill='%233A2416' font-family='Arial'%3ER%3C/text%3E%3C/svg%3E"
+  />
+
+  <!-- Fuente Barlow -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <a href="#" class="logo" aria-label="Inicio Roxi Cocina">
+        Roxi Cocina
+      </a>
+
+      <nav class="header-nav" aria-label="Navegación principal">
+        <a
+          href="https://www.instagram.com/roxicocina"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="instagram-link"
+        >
+          @roxicocina
+        </a>
+
+        <a
+          href="https://wa.me/5491150978824"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-small"
+        >
+          Hacer pedido
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="eyebrow">Menú casero del día</span>
+
+          <h1>Comida casera que abraza</h1>
+
+          <p>
+            Platos frescos, simples y hechos con amor todos los días.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#platos-dia" class="btn btn-primary">
+              Ver menú de hoy
+            </a>
+
+            <a
+              href="https://wa.me/5491150978824?text=Hola%20Roxi%20Cocina%2C%20quiero%20hacer%20un%20pedido."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              Hacer pedido por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Mensaje destacado Roxi Cocina">
+          <div class="hero-card-inner">
+            <span class="hero-card-tag">Hecho en casa</span>
+            <h2>Menú simple, rico y de todos los días.</h2>
+            <p>
+              Consultá los platos disponibles y escribinos para coordinar tu pedido.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Nuestro menú</span>
+          <h2>Platos disponibles</h2>
+          <p>
+            Podés ver todos los platos o filtrar por platos del día y opciones fijas.
+          </p>
+        </div>
+
+        <div class="filters" aria-label="Filtros de platos">
+          <button class="filter-btn active" data-filter="todos" type="button">
+            Todos
+          </button>
+
+          <button class="filter-btn" data-filter="dia" type="button">
+            Platos del día
+          </button>
+
+          <button class="filter-btn" data-filter="fijo" type="button">
+            Fijos
+          </button>
+        </div>
+
+        <section class="dish-group" id="platos-dia" data-section="dia">
+          <div class="group-heading">
+            <h3>Platos del día</h3>
+            <p>Opciones frescas que se actualizan todos los días.</p>
+          </div>
+
+          <div class="cards-grid" id="day-dishes"></div>
+        </section>
+
+        <section class="dish-group" id="platos-fijos" data-section="fijo">
+          <div class="group-heading">
+            <h3>Platos fijos</h3>
+            <p>Clásicos disponibles de forma permanente.</p>
+          </div>
+
+          <div class="cards-grid" id="fixed-dishes"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="how-to-order" id="como-pedir">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Cómo pedir</span>
+          <h2>Hacé tu pedido en simples pasos</h2>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">1</span>
+            <h3>Elegí tu plato</h3>
+            <p>
+              Revisá el menú del día o elegí alguno de los platos fijos disponibles.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">2</span>
+            <h3>Escribinos por WhatsApp</h3>
+            <p>
+              Tocá el botón de pedido y se abrirá un mensaje listo para enviar.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">3</span>
+            <h3>Coordinamos entrega o retiro</h3>
+            <p>
+              Confirmamos disponibilidad, horario y forma de entrega o retiro.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© <span id="current-year"></span> Roxi Cocina. Comida casera hecha con amor.</p>
+
+      <a
+        href="https://wa.me/5491150978824"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        WhatsApp: 11 5097 8824
+      </a>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

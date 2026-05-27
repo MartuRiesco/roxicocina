@@ -88,6 +88,7 @@ export const platos = [
   {
     titulo: "Pollo al verdeo",
     descripcion: "Plato casero del lunes. Pollo al verdeo  con puré de papas cremoso.",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/991g0ptw/Chat-GPT-Image-27-may-2026-16-28-16.png",
     alt: "Pollo al verdeo casero",
     tipo: "dia",

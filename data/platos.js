@@ -26,9 +26,9 @@ export const platos = [
 
   {
     titulo: "Tarta",
-    descripcion: "Tartas caseras con diferentes gustos disponibles.",
-    precio: "Consultar",
-    imagen: "",
+    descripcion: "Tartas caseras con diferentes gustos disponibles con ensalada de lechuga y tomate.",
+    precio: "$10.000",
+    imagen: "https://i.ibb.co/hxg2PTFD/Chat-GPT-Image-27-may-2026-18-07-38.png",
     alt: "Tarta casera Roxi Cocina",
     tipo: "fijo",
     opciones: [
@@ -42,8 +42,8 @@ export const platos = [
   {
     titulo: "Milanesa con guarnición",
     descripcion: "Milanesa casera a elección, acompañada con guarnición.",
-    precio: "Consultar",
-    imagen: "",
+    precio: "$12.000",
+    imagen: "https://i.ibb.co/WWrxYFDT/Chat-GPT-Image-27-may-2026-18-05-46.png",
     alt: "Milanesa casera con guarnición",
     tipo: "fijo",
     opciones: [
@@ -57,8 +57,8 @@ export const platos = [
   {
     titulo: "Empanadas",
     descripcion: "Empanadas caseras al horno con rellenos sabrosos.",
-    precio: "Consultar",
-    imagen: "",
+    precio: "$2500 C/U",
+    imagen: "https://i.ibb.co/60GFqtFQ/Chat-GPT-Image-27-may-2026-18-11-46.png",
     alt: "Empanadas caseras Roxi Cocina",
     tipo: "fijo",
     opciones: [
@@ -67,17 +67,19 @@ export const platos = [
       "Carne tradicional"
     ]
   },
-  {
-    titulo: "Ensalada del día",
-    descripcion: "Ensalada fresca del día. Consultar variedad disponible.",
-    precio: "Consultar",
-    imagen: "",
-    alt: "Ensalada fresca del día",
-    tipo: "fijo",
-    opciones: [
-      "Consultar opción disponible"
-    ]
-  },
+{
+  titulo: "Ensalada del día",
+  descripcion: "Ensalada fresca del día. Consultar variedad disponible. Se puede agregar pollo o atún por un adicional.",
+  precio: "$10.000",
+  imagen: "https://i.ibb.co/JWFTYsm9/Chat-GPT-Image-27-may-2026-18-10-09.png",
+  alt: "Ensalada fresca del día",
+  tipo: "fijo",
+  opciones: [
+    "Consultar opción disponible",
+    "Agregar pollo: +$2.000",
+    "Agregar atún: +$2.000"
+  ]
+},
 
   /**
    * PLATOS DEL DÍA
@@ -86,7 +88,7 @@ export const platos = [
   {
     titulo: "Pollo al verdeo",
     descripcion: "Plato casero del lunes. Pollo al verdeo cremoso y sabroso.",
-    precio: "Consultar",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/991g0ptw/Chat-GPT-Image-27-may-2026-16-28-16.png",
     alt: "Pollo al verdeo casero",
     tipo: "dia",
@@ -96,7 +98,7 @@ export const platos = [
   {
     titulo: "Guiso de lentejas",
     descripcion: "Plato casero del martes. Guiso abundante, calentito y bien condimentado.",
-    precio: "Consultar",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/Q7fdtv5W/Chat-GPT-Image-27-may-2026-16-32-50.png",
     alt: "Guiso de lentejas casero",
     tipo: "dia",
@@ -106,7 +108,7 @@ export const platos = [
   {
     titulo: "Risotto de hongos",
     descripcion: "Plato casero del miércoles. Risotto cremoso con hongos.",
-    precio: "Consultar",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/xKQt5J19/Chat-GPT-Image-27-may-2026-16-35-18.png",
     alt: "Risotto de hongos",
     tipo: "dia",
@@ -116,7 +118,7 @@ export const platos = [
   {
     titulo: "Ñoquis con salsa",
     descripcion: "Plato casero del jueves. Ñoquis con salsa de tomate.",
-    precio: "Consultar",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/sv6BV9Pq/Chat-GPT-Image-27-may-2026-16-36-47.png",
     alt: "Ñoquis caseros con salsa",
     tipo: "dia",
@@ -126,7 +128,7 @@ export const platos = [
   {
     titulo: "Pastel de papa",
     descripcion: "Plato casero del viernes. Pastel de papa clásico, gratinado al horno.",
-    precio: "Consultar",
+    precio: "$12.000",
     imagen: "https://i.ibb.co/Xxbvr75G/Chat-GPT-Image-27-may-2026-16-38-53.png",
     alt: "Pastel de papa casero",
     tipo: "dia",

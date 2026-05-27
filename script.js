@@ -19,20 +19,6 @@ const currentYear = document.querySelector("#current-year");
 currentYear.textContent = new Date().getFullYear();
 
 /**
- * Obtiene el día actual de la semana.
- * Domingo = 0
- * Lunes = 1
- * Martes = 2
- * Miércoles = 3
- * Jueves = 4
- * Viernes = 5
- * Sábado = 6
- */
-function getCurrentDayNumber() {
-  return new Date().getDay();
-}
-
-/**
  * Formatea precios.
  * Si el precio está vacío, en null o como "Consultar",
  * muestra "Consultar".
@@ -163,22 +149,20 @@ function renderDishes() {
   dayDishesContainer.innerHTML = "";
   fixedDishesContainer.innerHTML = "";
 
-  const currentDay = getCurrentDayNumber();
+  // Muestra todos los platos del día, sin filtrar por el día actual.
+  const dayDishes = platos.filter((dish) => dish.tipo === "dia");
 
-  const todayDishes = platos.filter((dish) => {
-    return dish.tipo === "dia" && dish.diaSemana === currentDay;
-  });
-
+  // Muestra todos los platos fijos.
   const fixedDishes = platos.filter((dish) => dish.tipo === "fijo");
 
-  if (todayDishes.length === 0) {
+  if (dayDishes.length === 0) {
     dayDishesContainer.innerHTML = `
       <p class="empty-message">
-        Hoy no hay un plato del día cargado. Consultanos por WhatsApp para conocer las opciones disponibles.
+        Todavía no hay platos del día cargados.
       </p>
     `;
   } else {
-    todayDishes.forEach((dish) => {
+    dayDishes.forEach((dish) => {
       dayDishesContainer.appendChild(createDishCard(dish));
     });
   }

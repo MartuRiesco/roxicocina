@@ -32,8 +32,8 @@ export const platos = [
     alt: "Tarta casera Roxi Cocina",
     tipo: "fijo",
     opciones: [
-      "Verdura",
-      "Zapallitos",
+      "Verdura y queso",
+      "Zapallitos y queso",
       "Jamón y queso",
       "Calabaza, choclo, cebolla y queso",
       "Cebolla, panceta y queso"
@@ -87,8 +87,7 @@ export const platos = [
 
   {
     titulo: "Pollo al verdeo",
-    descripcion: "Plato casero del lunes. Pollo al verdeo cremoso y sabroso.",
-    precio: "$12.000",
+    descripcion: "Plato casero del lunes. Pollo al verdeo  con puré de papas cremoso.",
     imagen: "https://i.ibb.co/991g0ptw/Chat-GPT-Image-27-may-2026-16-28-16.png",
     alt: "Pollo al verdeo casero",
     tipo: "dia",
@@ -117,9 +116,9 @@ export const platos = [
   },
   {
     titulo: "Ñoquis con salsa",
-    descripcion: "Plato casero del jueves. Ñoquis con salsa de tomate.",
+    descripcion: "Plato casero del jueves. Ñoquis con salsa bolognesa o rosa.",
     precio: "$12.000",
-    imagen: "https://i.ibb.co/sv6BV9Pq/Chat-GPT-Image-27-may-2026-16-36-47.png",
+    imagen: "https://i.ibb.co/r2Q5Grp7/Chat-GPT-Image-27-may-2026-18-33-19.png",
     alt: "Ñoquis caseros con salsa",
     tipo: "dia",
     diaSemana: 4,

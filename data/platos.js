@@ -57,7 +57,7 @@ export const platos = [
   {
     titulo: "Empanadas",
     descripcion: "Empanadas caseras al horno con rellenos sabrosos.",
-    precio: "$2500 C/U",
+    precio: "$2.500 C/U",
     imagen: "https://i.ibb.co/60GFqtFQ/Chat-GPT-Image-27-may-2026-18-11-46.png",
     alt: "Empanadas caseras Roxi Cocina",
     tipo: "fijo",

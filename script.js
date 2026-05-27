@@ -24,17 +24,29 @@ currentYear.textContent = new Date().getFullYear();
  * muestra "Consultar".
  */
 function formatPrice(price) {
-  if (price === null || price === undefined || price === "" || price === "Consultar") {
+  if (
+    price === null ||
+    price === undefined ||
+    price === "" ||
+    price === "Consultar"
+  ) {
     return "Consultar";
   }
 
+  // Si el precio ya viene escrito como texto, por ejemplo "$10.000" o "$2.500 C/U",
+  // lo mostramos tal cual está cargado en platos.js.
+  if (typeof price === "string") {
+    return price;
+  }
+
+  // Si el precio viene como número, por ejemplo 10000,
+  // lo formateamos automáticamente como moneda argentina.
   return new Intl.NumberFormat("es-AR", {
     style: "currency",
     currency: "ARS",
     maximumFractionDigits: 0
   }).format(price);
 }
-
 /**
  * Crea un enlace de WhatsApp con mensaje personalizado.
  */

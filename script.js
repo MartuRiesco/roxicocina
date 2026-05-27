@@ -19,10 +19,29 @@ const currentYear = document.querySelector("#current-year");
 currentYear.textContent = new Date().getFullYear();
 
 /**
+ * Obtiene el día actual de la semana.
+ * Domingo = 0
+ * Lunes = 1
+ * Martes = 2
+ * Miércoles = 3
+ * Jueves = 4
+ * Viernes = 5
+ * Sábado = 6
+ */
+function getCurrentDayNumber() {
+  return new Date().getDay();
+}
+
+/**
  * Formatea precios.
- * Podés cambiar la moneda o el formato desde acá.
+ * Si el precio está vacío, en null o como "Consultar",
+ * muestra "Consultar".
  */
 function formatPrice(price) {
+  if (price === null || price === undefined || price === "" || price === "Consultar") {
+    return "Consultar";
+  }
+
   return new Intl.NumberFormat("es-AR", {
     style: "currency",
     currency: "ARS",
@@ -41,16 +60,33 @@ function createWhatsappLink(dishName) {
 /**
  * Devuelve el texto visible de la etiqueta según el tipo de plato.
  */
-function getBadgeText(type) {
-  if (type === "dia") {
-    return "Plato del día";
+function getBadgeText(dish) {
+  if (dish.tipo === "dia") {
+    return dish.diaTexto ? `Plato del día · ${dish.diaTexto}` : "Plato del día";
   }
 
-  if (type === "fijo") {
+  if (dish.tipo === "fijo") {
     return "Fijo";
   }
 
   return "Disponible";
+}
+
+/**
+ * Genera una lista de variantes, gustos u opciones dentro de la tarjeta.
+ */
+function createOptionsList(options) {
+  if (!options || options.length === 0) {
+    return "";
+  }
+
+  const items = options.map((option) => `<li>${option}</li>`).join("");
+
+  return `
+    <ul class="dish-options">
+      ${items}
+    </ul>
+  `;
 }
 
 /**
@@ -61,7 +97,7 @@ function createDishCard(dish) {
   article.classList.add("dish-card");
 
   const hasImage = dish.imagen && dish.imagen.trim() !== "";
-  const badgeText = getBadgeText(dish.tipo);
+  const badgeText = getBadgeText(dish);
   const whatsappLink = createWhatsappLink(dish.titulo);
 
   article.innerHTML = `
@@ -95,6 +131,8 @@ function createDishCard(dish) {
         ${dish.descripcion}
       </p>
 
+      ${createOptionsList(dish.opciones)}
+
       <div class="dish-footer">
         <span class="dish-price">
           ${formatPrice(dish.precio)}
@@ -117,25 +155,30 @@ function createDishCard(dish) {
 }
 
 /**
- * Renderiza los platos según su tipo:
- * - tipo: "dia" para platos del día.
- * - tipo: "fijo" para platos fijos.
+ * Renderiza los platos:
+ * - Platos del día: muestra automáticamente el plato correspondiente al día actual.
+ * - Platos fijos: muestra todos los platos fijos.
  */
 function renderDishes() {
   dayDishesContainer.innerHTML = "";
   fixedDishesContainer.innerHTML = "";
 
-  const dayDishes = platos.filter((dish) => dish.tipo === "dia");
+  const currentDay = getCurrentDayNumber();
+
+  const todayDishes = platos.filter((dish) => {
+    return dish.tipo === "dia" && dish.diaSemana === currentDay;
+  });
+
   const fixedDishes = platos.filter((dish) => dish.tipo === "fijo");
 
-  if (dayDishes.length === 0) {
+  if (todayDishes.length === 0) {
     dayDishesContainer.innerHTML = `
       <p class="empty-message">
-        Todavía no hay platos del día cargados.
+        Hoy no hay un plato del día cargado. Consultanos por WhatsApp para conocer las opciones disponibles.
       </p>
     `;
   } else {
-    dayDishes.forEach((dish) => {
+    todayDishes.forEach((dish) => {
       dayDishesContainer.appendChild(createDishCard(dish));
     });
   }

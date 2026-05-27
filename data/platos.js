@@ -1,68 +1,136 @@
 /**
  * Archivo de datos de Roxi Cocina.
  *
- * Para agregar un plato nuevo, copiá uno de los objetos y modificá:
- * - titulo
- * - descripcion
- * - precio
- * - imagen
- * - alt
- * - tipo
- *
  * Tipos disponibles:
- * - "dia"  = Plato del día
- * - "fijo" = Plato fijo
+ * - "dia"  = Plato del día automático según la semana
+ * - "fijo" = Plato fijo disponible siempre
+ *
+ * Para platos del día, usar:
+ * diaSemana:
+ * 1 = lunes
+ * 2 = martes
+ * 3 = miércoles
+ * 4 = jueves
+ * 5 = viernes
  *
  * Si no tenés imagen, dejá imagen: ""
+ *
+ * Si no querés cargar precio todavía, usá:
+ * precio: "Consultar"
  */
 
 export const platos = [
+  /**
+   * PLATOS FIJOS
+   */
+
   {
-    titulo: "Milanesa con puré",
-    descripcion: "Milanesa casera dorada y crocante, acompañada con puré suave de papa.",
-    precio: 6500,
+    titulo: "Tarta",
+    descripcion: "Tartas caseras con diferentes gustos disponibles.",
+    precio: "Consultar",
     imagen: "",
-    alt: "Milanesa con puré casero",
-    tipo: "dia"
+    alt: "Tarta casera Roxi Cocina",
+    tipo: "fijo",
+    opciones: [
+      "Verdura",
+      "Zapallitos",
+      "Jamón y queso",
+      "Calabaza, choclo, cebolla y queso",
+      "Cebolla, panceta y queso"
+    ]
   },
   {
-    titulo: "Tarta de verdura",
-    descripcion: "Tarta casera con relleno de acelga, cebolla, queso y masa bien liviana.",
-    precio: 4800,
+    titulo: "Milanesa con guarnición",
+    descripcion: "Milanesa casera a elección, acompañada con guarnición.",
+    precio: "Consultar",
     imagen: "",
-    alt: "Tarta casera de verdura",
-    tipo: "dia"
+    alt: "Milanesa casera con guarnición",
+    tipo: "fijo",
+    opciones: [
+      "Milanesa de carne",
+      "Milanesa de pollo",
+      "Milanesa de soja",
+      "Guarnición: puré de papa",
+      "Guarnición: ensalada"
+    ]
   },
   {
-    titulo: "Pastel de papa",
-    descripcion: "Pastel de papa clásico, con carne condimentada y gratinado al horno.",
-    precio: 6200,
+    titulo: "Empanadas",
+    descripcion: "Empanadas caseras al horno con rellenos sabrosos.",
+    precio: "Consultar",
     imagen: "",
-    alt: "Pastel de papa casero",
-    tipo: "dia"
+    alt: "Empanadas caseras Roxi Cocina",
+    tipo: "fijo",
+    opciones: [
+      "Vacío",
+      "Verdura y queso",
+      "Carne tradicional"
+    ]
   },
   {
-    titulo: "Empanadas caseras",
-    descripcion: "Empanadas al horno con relleno sabroso. Consultar sabores disponibles.",
-    precio: 1200,
+    titulo: "Ensalada del día",
+    descripcion: "Ensalada fresca del día. Consultar variedad disponible.",
+    precio: "Consultar",
     imagen: "",
-    alt: "Empanadas caseras",
-    tipo: "fijo"
+    alt: "Ensalada fresca del día",
+    tipo: "fijo",
+    opciones: [
+      "Consultar opción disponible"
+    ]
+  },
+
+  /**
+   * PLATOS DEL DÍA
+   */
+
+  {
+    titulo: "Pollo al verdeo",
+    descripcion: "Plato casero del lunes. Pollo al verdeo cremoso y sabroso.",
+    precio: "Consultar",
+    imagen: "https://ibb.co/hR49NgfX",
+    alt: "Pollo al verdeo casero",
+    tipo: "dia",
+    diaSemana: 1,
+    diaTexto: "Lunes"
+  },
+  {
+    titulo: "Guiso de lentejas",
+    descripcion: "Plato casero del martes. Guiso abundante, calentito y bien condimentado.",
+    precio: "Consultar",
+    imagen: "https://ibb.co/KcXwSx1t",
+    alt: "Guiso de lentejas casero",
+    tipo: "dia",
+    diaSemana: 2,
+    diaTexto: "Martes"
+  },
+  {
+    titulo: "Risotto de hongos",
+    descripcion: "Plato casero del miércoles. Risotto cremoso con hongos.",
+    precio: "Consultar",
+    imagen: "https://ibb.co/V08cB2gn",
+    alt: "Risotto de hongos",
+    tipo: "dia",
+    diaSemana: 3,
+    diaTexto: "Miércoles"
   },
   {
     titulo: "Ñoquis con salsa",
-    descripcion: "Ñoquis caseros con salsa de tomate suave y queso rallado.",
-    precio: 5800,
-    imagen: "",
+    descripcion: "Plato casero del jueves. Ñoquis con salsa de tomate.",
+    precio: "Consultar",
+    imagen: "https://ibb.co/JRyhsjdH",
     alt: "Ñoquis caseros con salsa",
-    tipo: "fijo"
+    tipo: "dia",
+    diaSemana: 4,
+    diaTexto: "Jueves"
   },
   {
-    titulo: "Sándwich de milanesa",
-    descripcion: "Sándwich abundante con milanesa casera, lechuga, tomate y aderezos.",
-    precio: 5200,
-    imagen: "",
-    alt: "Sándwich de milanesa casero",
-    tipo: "fijo"
+    titulo: "Pastel de papa",
+    descripcion: "Plato casero del viernes. Pastel de papa clásico, gratinado al horno.",
+    precio: "Consultar",
+    imagen: "https://ibb.co/KxX3p2s8",
+    alt: "Pastel de papa casero",
+    tipo: "dia",
+    diaSemana: 5,
+    diaTexto: "Viernes"
   }
 ];

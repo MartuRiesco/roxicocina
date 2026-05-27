@@ -672,3 +672,17 @@ textarea {
     transition: none !important;
   }
 }
+
+.dish-options {
+  margin-top: 14px;
+  padding-left: 18px;
+  color: var(--color-brown-medium);
+}
+
+.dish-options li {
+  margin-bottom: 4px;
+}
+
+.dish-options li::marker {
+  color: var(--color-terracotta);
+}

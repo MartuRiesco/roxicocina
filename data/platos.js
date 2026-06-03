@@ -97,22 +97,22 @@ export const platos = [
   },
   {
     titulo: "Risotto de hongos",
-    descripcion: "Plato casero del miércoles. Risotto cremoso con hongos.",
+    descripcion: "Plato casero del martes. Risotto cremoso con hongos.",
     precio: "$12.000",
     imagen: "https://i.ibb.co/xKQt5J19/Chat-GPT-Image-27-may-2026-16-35-18.png",
     alt: "Risotto de hongos",
     tipo: "dia",
-    diaSemana: 3,
+    diaSemana: 2,
     diaTexto: "Martes"
   },
    {
     titulo: "Guiso de lentejas",
-    descripcion: "Plato casero del martes. Guiso abundante, calentito y bien condimentado.",
+    descripcion: "Plato casero del miércoles. Guiso abundante, calentito y bien condimentado.",
     precio: "$12.000",
     imagen: "https://i.ibb.co/Q7fdtv5W/Chat-GPT-Image-27-may-2026-16-32-50.png",
     alt: "Guiso de lentejas casero",
     tipo: "dia",
-    diaSemana: 2,
+    diaSemana: 3,
     diaTexto: "Miércoles"
   },
   {

@@ -36,7 +36,7 @@ export const platos = [
       "Zapallitos y queso",
       "Jamón y queso",
       "Calabaza, choclo, cebolla y queso",
-      "Cebolla, panceta y queso"
+      "Cebolla y queso"
     ]
   },
   {

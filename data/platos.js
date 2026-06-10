@@ -80,6 +80,14 @@ export const platos = [
     "Agregar atún: +$2.000"
   ]
 },
+{
+  titulo: "Chipá",
+  descripcion: "Chipá casero, ideal para acompañar unos mates. Pedilos cocidos o congelados para cocinar en casa.",
+  precio: "$7.000 x 11 unidades",
+  imagen: "https://i.ibb.co/prbXV80N/Chat-GPT-Image-10-jun-2026-19-27-31.png",
+  alt: "Chipá casero",
+  tipo: "fijo",
+},
 
   /**
    * PLATOS DEL DÍA

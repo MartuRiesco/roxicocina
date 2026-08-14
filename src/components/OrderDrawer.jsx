@@ -1,5 +1,11 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { formatPrice } from '../utils/formatters';
+import {
+  formatPrice,
+  formatPriceRange,
+  getLinePriceRange,
+  getOrderPriceRange,
+} from '../utils/formatters';
+import { getProductCartName } from '../utils/productOptions';
 import { getCartOrderUrl } from '../utils/whatsapp';
 
 const PLACEHOLDER = '/images/products/placeholder-roxi.svg';
@@ -37,7 +43,7 @@ export default function OrderDrawer({ open, onClose, items, onAdd, onDecrement, 
   );
 
   const subtotal = useMemo(
-    () => items.reduce((total, item) => total + item.product.price * item.quantity, 0),
+    () => getOrderPriceRange(items),
     [items],
   );
 
@@ -70,34 +76,40 @@ export default function OrderDrawer({ open, onClose, items, onAdd, onDecrement, 
         ) : (
           <>
             <div className="order-items">
-              {items.map(({ product, quantity }) => (
-                <article className="order-item" key={product.id}>
-                  <img
-                    src={product.image}
-                    alt=""
-                    width="112"
-                    height="84"
-                    loading="lazy"
-                    onError={(event) => {
-                      event.currentTarget.onerror = null;
-                      event.currentTarget.src = PLACEHOLDER;
-                    }}
-                  />
-                  <div className="order-item-copy">
-                    <h3>{product.name}</h3>
-                    <p>{formatPrice(product.price)} c/u</p>
-                    <div className="quantity-row">
-                      <div className="quantity-control" aria-label={`Cantidad de ${product.name}`}>
-                        <button type="button" onClick={() => onDecrement(product.id)} aria-label={`Quitar una unidad de ${product.name}`}>−</button>
-                        <span aria-live="polite">{quantity}</span>
-                        <button type="button" onClick={() => onAdd(product.id)} aria-label={`Agregar una unidad de ${product.name}`}>+</button>
+              {items.map(({ product, quantity }) => {
+                const orderKey = product.orderKey ?? product.id;
+                const productName = getProductCartName(product);
+
+                return (
+                  <article className="order-item" key={orderKey}>
+                    <img
+                      src={product.image}
+                      alt=""
+                      width="112"
+                      height="84"
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = PLACEHOLDER;
+                      }}
+                    />
+                    <div className="order-item-copy">
+                      <h3>{product.name}</h3>
+                      {product.selectedOption && <span className="order-item-option">{product.selectedOption.label}</span>}
+                      <p>{formatPrice(product.price)} c/u</p>
+                      <div className="quantity-row">
+                        <div className="quantity-control" aria-label={`Cantidad de ${productName}`}>
+                          <button type="button" onClick={() => onDecrement(orderKey)} aria-label={`Quitar una unidad de ${productName}`}>−</button>
+                          <span aria-live="polite">{quantity}</span>
+                          <button type="button" onClick={() => onAdd(orderKey)} aria-label={`Agregar una unidad de ${productName}`}>+</button>
+                        </div>
+                        <button className="remove-button" type="button" onClick={() => onRemove(orderKey)}>Eliminar</button>
                       </div>
-                      <button className="remove-button" type="button" onClick={() => onRemove(product.id)}>Eliminar</button>
                     </div>
-                  </div>
-                  <strong className="order-line-total">{formatPrice(product.price * quantity)}</strong>
-                </article>
-              ))}
+                    <strong className="order-line-total">{formatPriceRange(getLinePriceRange(product.price, quantity))}</strong>
+                  </article>
+                );
+              })}
             </div>
 
             <div className="order-summary">
@@ -107,7 +119,7 @@ export default function OrderDrawer({ open, onClose, items, onAdd, onDecrement, 
               </div>
               <div className="summary-row summary-total">
                 <span>Subtotal estimado</span>
-                <strong>{formatPrice(subtotal)}</strong>
+                <strong>{formatPriceRange(subtotal)}</strong>
               </div>
               <p>El pedido se confirma por WhatsApp junto con disponibilidad, horario y coordinación de entrega.</p>
               <a className="button order-confirm" href={getCartOrderUrl(items)} target="_blank" rel="noreferrer">

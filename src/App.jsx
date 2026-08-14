@@ -8,15 +8,14 @@ import OrderDrawer from './components/OrderDrawer';
 import WhatsAppButton from './components/WhatsAppButton';
 import { products } from './data/products';
 import { useOrder } from './hooks/useOrder';
+import { getOrderItems } from './utils/productOptions';
 
 export default function App() {
   const [orderOpen, setOrderOpen] = useState(false);
   const { quantities, totalUnits, add, decrement, remove, clear } = useOrder();
 
   const orderItems = useMemo(
-    () => products
-      .filter((product) => quantities[product.id] > 0)
-      .map((product) => ({ product, quantity: quantities[product.id] })),
+    () => getOrderItems(products, quantities),
     [quantities],
   );
 

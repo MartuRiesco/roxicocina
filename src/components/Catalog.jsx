@@ -29,6 +29,7 @@ export default function Catalog({ quantities, onAdd }) {
         ...(product.secondaryCategories ?? []),
         product.protein,
         product.detail,
+        ...(product.options ?? []).map((option) => option.label),
         ...product.tags,
       ].join(' '));
 
@@ -80,7 +81,7 @@ export default function Catalog({ quantities, onAdd }) {
                 key={product.id}
                 product={product}
                 index={index}
-                quantity={quantities[product.id] ?? 0}
+                quantities={quantities}
                 onAdd={onAdd}
               />
             ))}

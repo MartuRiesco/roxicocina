@@ -5,7 +5,7 @@ import {
   getLinePriceRange,
   getOrderPriceRange,
 } from '../utils/formatters';
-import { getProductCartName } from '../utils/productOptions';
+import { getProductCartName, getProductVariantName } from '../utils/productOptions';
 import { getCartOrderUrl } from '../utils/whatsapp';
 
 const PLACEHOLDER = '/images/products/placeholder-roxi.svg';
@@ -79,6 +79,9 @@ export default function OrderDrawer({ open, onClose, items, onAdd, onDecrement, 
               {items.map(({ product, quantity }) => {
                 const orderKey = product.orderKey ?? product.id;
                 const productName = getProductCartName(product);
+                const displayName = product.selectedOption
+                  ? getProductVariantName(product, product.selectedOption)
+                  : product.name;
 
                 return (
                   <article className="order-item" key={orderKey}>
@@ -94,7 +97,7 @@ export default function OrderDrawer({ open, onClose, items, onAdd, onDecrement, 
                       }}
                     />
                     <div className="order-item-copy">
-                      <h3>{product.name}</h3>
+                      <h3>{displayName}</h3>
                       {product.selectedOption && <span className="order-item-option">{product.selectedOption.label}</span>}
                       <p>{formatPrice(product.price)} c/u</p>
                       <div className="quantity-row">

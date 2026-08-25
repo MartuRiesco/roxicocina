@@ -1,4 +1,4 @@
-import { getProductCartName } from './productOptions';
+import { getProductCartName, getProductVariantName } from './productOptions';
 
 export const WHATSAPP_NUMBER = '5491150978824';
 export const WHATSAPP_DISPLAY = '11 5097 8824';
@@ -14,7 +14,7 @@ export function getGeneralOrderUrl() {
 }
 
 export function getProductOrderUrl(product, option = null) {
-  const productName = option ? `${product.name} (${option.label})` : product.name;
+  const productName = option ? `${getProductVariantName(product, option)} (${option.label})` : product.name;
 
   return buildWhatsAppUrl(
     `Hola Roxi Cocina, quiero pedir: ${productName}. ¿Me confirmás disponibilidad?`,

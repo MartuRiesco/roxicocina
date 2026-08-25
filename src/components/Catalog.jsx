@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { CATEGORY_ORDER, products } from '../data/products';
 import { normalizeSearch } from '../utils/formatters';
+import { getProductDisplayName, getProductOptionSummary, getProductVariantName } from '../utils/productOptions';
 import Filters from './Filters';
 import ProductCard from './ProductCard';
 
@@ -22,14 +23,18 @@ export default function Catalog({ quantities, onAdd }) {
       const categoryMatches = category === 'Todos'
         || product.category === category
         || product.secondaryCategories?.includes(category);
+      const options = product.options ?? [];
 
       const searchable = normalizeSearch([
         product.name,
+        getProductDisplayName(product),
         product.category,
         ...(product.secondaryCategories ?? []),
         product.protein,
+        getProductOptionSummary(product),
         product.detail,
-        ...(product.options ?? []).map((option) => option.label),
+        ...options.map((option) => option.label),
+        ...options.map((option) => getProductVariantName(product, option)),
         ...product.tags,
       ].join(' '));
 

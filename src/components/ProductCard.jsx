@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { formatPrice } from '../utils/formatters';
 import {
   getDefaultProductOption,
+  getProductDisplayName,
+  getProductOptionSummary,
   getProductOptionPrice,
   getProductOptionQuantity,
   getProductOptions,
@@ -18,6 +20,10 @@ export default function ProductCard({ product, index, quantities = {}, onAdd }) 
   const defaultOption = getDefaultProductOption(product);
   const [selectedOptionId, setSelectedOptionId] = useState(defaultOption?.id ?? '');
   const selectedOption = options.find((option) => option.id === selectedOptionId) ?? defaultOption;
+  const displayName = getProductDisplayName(product);
+  const proteinLabel = options.length > 0
+    ? getProductOptionSummary(product)
+    : product.protein === 'Sin especificar' ? 'Preparación casera' : product.protein;
   const selectedPrice = getProductOptionPrice(product, selectedOption);
   const selectedOrderKey = getProductOrderKey(product, selectedOption);
   const selectedQuantity = getProductOptionQuantity(quantities, product, selectedOption);
@@ -29,7 +35,7 @@ export default function ProductCard({ product, index, quantities = {}, onAdd }) 
         <img
           className="product-image"
           src={product.image}
-          alt={`${product.name} de Roxi Cocina`}
+          alt={`${displayName} de Roxi Cocina`}
           width="640"
           height="480"
           loading={index < 3 ? 'eager' : 'lazy'}
@@ -46,8 +52,8 @@ export default function ProductCard({ product, index, quantities = {}, onAdd }) 
       <div className="product-body">
         <div className="product-heading">
           <div>
-            <p className="product-protein">{product.protein === 'Sin especificar' ? 'Preparación casera' : product.protein}</p>
-            <h3>{product.name}</h3>
+            <p className="product-protein">{proteinLabel}</p>
+            <h3>{displayName}</h3>
           </div>
           <strong className="product-price">{formatPrice(selectedPrice)}</strong>
         </div>
@@ -55,7 +61,7 @@ export default function ProductCard({ product, index, quantities = {}, onAdd }) 
         <p className="product-detail">{product.detail}</p>
 
         {options.length > 0 && (
-          <div className="product-options" aria-label={`Opciones para ${product.name}`}>
+          <div className="product-options" aria-label={`Opciones para ${displayName}`}>
             {options.map((option) => {
               const isSelected = selectedOption?.id === option.id;
               const optionQuantity = getProductOptionQuantity(quantities, product, option);

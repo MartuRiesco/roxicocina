@@ -17,7 +17,7 @@ export default function Filters({
             type="search"
             value={query}
             onChange={(event) => onQueryChange(event.target.value)}
-            placeholder="Buscar pollo, hongos, tarta, verdura..."
+            placeholder="Buscar pollo/carne, hongos, tarta, verdura..."
             autoComplete="off"
           />
         </label>

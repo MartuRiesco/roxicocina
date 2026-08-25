@@ -1,4 +1,4 @@
-import { applyPriceModifier } from './formatters';
+import { applyPriceModifier, normalizeSearch } from './formatters';
 
 const OPTION_KEY_SEPARATOR = '::';
 
@@ -6,9 +6,42 @@ export function getProductOptions(product) {
   return product.options ?? [];
 }
 
+export function getProductOptionName(option) {
+  const name = (option?.title ?? option?.label ?? '').replace(/^con\s+/i, '').trim();
+
+  return name ? `${name[0].toLocaleUpperCase('es-AR')}${name.slice(1)}` : '';
+}
+
+export function getProductOptionSummary(product, separator = ' / ') {
+  return getProductOptions(product)
+    .map((option) => getProductOptionName(option))
+    .filter(Boolean)
+    .join(separator);
+}
+
 export function getDefaultProductOption(product) {
   const options = getProductOptions(product);
   return options.find((option) => option.default) ?? options[0] ?? null;
+}
+
+export function getProductDisplayName(product) {
+  const optionSummary = getProductOptionSummary(product, '/');
+
+  if (!optionSummary) {
+    return product.name;
+  }
+
+  return replaceDefaultOptionPrefix(product, optionSummary);
+}
+
+export function getProductVariantName(product, option = getDefaultProductOption(product)) {
+  const optionName = getProductOptionName(option);
+
+  if (!optionName) {
+    return getProductDisplayName(product);
+  }
+
+  return replaceDefaultOptionPrefix(product, optionName);
 }
 
 export function getProductOrderKey(product, option = getDefaultProductOption(product)) {
@@ -42,7 +75,7 @@ export function getProductTotalQuantity(quantities, product) {
 
 export function getProductCartName(product) {
   return product.selectedOption
-    ? `${product.name} (${product.selectedOption.label})`
+    ? `${getProductVariantName(product, product.selectedOption)} (${product.selectedOption.label})`
     : product.name;
 }
 
@@ -72,4 +105,20 @@ export function getOrderItems(products, quantities) {
       })
       .filter(Boolean);
   });
+}
+
+function replaceDefaultOptionPrefix(product, replacement) {
+  const defaultOptionName = getProductOptionName(getDefaultProductOption(product));
+
+  if (!defaultOptionName) {
+    return product.name;
+  }
+
+  const currentPrefix = product.name.slice(0, defaultOptionName.length);
+
+  if (normalizeSearch(currentPrefix) !== normalizeSearch(defaultOptionName)) {
+    return `${replacement} ${product.name}`;
+  }
+
+  return `${replacement}${product.name.slice(defaultOptionName.length)}`;
 }
